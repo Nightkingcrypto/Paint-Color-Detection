@@ -1,23 +1,13 @@
 import sys
 from pathlib import Path
 
-# --- Ensure project root and 'src' folder are on sys.path ---
-HERE = Path(__file__).resolve()
-PROJECT_ROOT = HERE.parents[1]          # repo root
-SRC_DIR = PROJECT_ROOT / "src"          # src folder
-
-for p in (PROJECT_ROOT, SRC_DIR):
-    p_str = str(p)
-    if p_str not in sys.path:
-        sys.path.insert(0, p_str)
+# Ensure project root is on sys.path
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 import torch
-
-try:
-    from src.models import ColorVAE
-except ModuleNotFoundError:
-    # Fallback if src is added directly
-    from models import ColorVAE
+from src.models import ColorVAE
 
 
 def test_vae_forward():
@@ -29,3 +19,4 @@ def test_vae_forward():
     assert x_hat.shape == x.shape
     assert mu.shape[0] == x.shape[0]
     assert logvar.shape == mu.shape
+
