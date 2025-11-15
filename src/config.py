@@ -26,4 +26,4 @@ MLFLOW_EXPERIMENT = "color_vae_gan"
 MLFLOW_TRACKING_URI = (PROJECT_ROOT / "mlruns").as_uri()  # local folder with proper file:// URI
 
 # === MISC ===
-SEED = 42
+SEED = 28
