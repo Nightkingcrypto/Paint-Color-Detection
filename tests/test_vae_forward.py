@@ -1,13 +1,19 @@
-import sys
 from pathlib import Path
-
-# Ensure project root is on sys.path
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
+import importlib.util
 import torch
-from src.models import ColorVAE
+
+
+# --- Load ColorVAE directly from src/models/vae.py using the file path ---
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+VAE_PATH = PROJECT_ROOT / "src" / "models" / "vae.py"
+
+assert VAE_PATH.is_file(), f"VAE file not found at {VAE_PATH}"
+
+spec = importlib.util.spec_from_file_location("vae_module", VAE_PATH)
+vae_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(vae_module)
+
+ColorVAE = vae_module.ColorVAE
 
 
 def test_vae_forward():
@@ -19,4 +25,5 @@ def test_vae_forward():
     assert x_hat.shape == x.shape
     assert mu.shape[0] == x.shape[0]
     assert logvar.shape == mu.shape
+
 
