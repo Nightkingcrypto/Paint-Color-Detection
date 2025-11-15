@@ -20,9 +20,10 @@ data/raw/
 data/processed/
 *.csv
 
-# Models
-models/
-!models/.gitkeep
+# Trained model artefacts (only top-level /models directory)
+#/models/  # old line – REMOVE or comment if you see it
+/models/
+!/models/.gitkeep
 
 # Logs
 logs/
