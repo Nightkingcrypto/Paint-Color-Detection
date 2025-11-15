@@ -1,0 +1,22 @@
+name: color_vae_gan
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - torch
+      - torchvision
+      - pillow
+      - numpy
+      - pandas
+      - scikit-learn
+      - mlflow
+      - fastapi
+      - uvicorn
+      - python-multipart
+      - matplotlib
+      - opencv-python
+      - pydantic
+      - pytest
+      - loguru

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# Environments
+.env
+.venv
+venv/
+env/
+*.egg-info/
+
+# MLflow
+mlruns/
+
+# Data
+data/raw/
+data/processed/
+*.csv
+
+# Models
+models/
+!models/.gitkeep
+
+# Logs
+logs/
+!logs/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

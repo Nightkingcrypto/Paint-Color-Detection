@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Color Detector – VAE + GAN</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Color Detector – VAE + GAN</h1>
+    <p>Upload a solid color image. The model will return the 3 closest matching paint colours.</p>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required />
+        <button type="submit">Detect Color</button>
+    </form>
+
+    {% if error %}
+        <div class="error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if results %}
+        <h2>Top 3 Matches for {{ filename }}:</h2>
+        <ol>
+            {% for label, dist in results %}
+                <li><strong>{{ label }}</strong> (distance: {{ '%.4f'|format(dist) }})</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+</div>
+</body>
+</html>

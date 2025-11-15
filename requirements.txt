@@ -1,0 +1,15 @@
+torch
+torchvision
+pillow
+numpy
+pandas
+scikit-learn
+mlflow
+fastapi
+uvicorn
+python-multipart
+matplotlib
+opencv-python
+pydantic
+pytest
+loguru
